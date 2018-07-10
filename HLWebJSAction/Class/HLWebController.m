@@ -8,6 +8,7 @@
 
 #import "HLWebController.h"
 #import "JSWebModel.h"
+#import "HLDataDetailController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 
 
@@ -30,11 +31,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNav];
     [self.view addSubview:self.webView];
     if (self.model.jsURl) {
         NSURLRequest *request = [NSURLRequest requestWithURL:self.model.jsURl];
         [self.webView loadRequest:request];
     }
+}
+
+- (void)setNav{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Detail" style:UIBarButtonItemStylePlain target:self action:@selector(detailAction)];
+    
+}
+
+- (void)detailAction{
+    HLDataDetailController *detailVc = [[HLDataDetailController alloc] init];
+    detailVc.model = self.model;
+    [self.navigationController pushViewController:detailVc animated:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
@@ -45,29 +58,25 @@
     [context setExceptionHandler:^(JSContext *context, JSValue *exception) {
         NSLog(@"exception--%@", exception);
     }];
-    if (self.model.jsResponseActionArray && self.model.jsResponseActionArray.count > 0) {
-        for (NSString *jsResponseStr in self.model.jsResponseActionArray) {
+    if (self.model.responseJsActionArray && self.model.responseJsActionArray.count > 0) {
+        for (NSString *jsResponseStr in self.model.responseJsActionArray) {
             if (jsResponseStr && jsResponseStr.length > 0) {
                 context[jsResponseStr] = ^{
-                    [weakSelf showJsResponseActionWithName:jsResponseStr];
-                };
-            }
-        }
-    }
-    if (self.model.jsValueArray && self.model.jsValueArray.count > 0) {
-        for (NSString *jsValueStr in self.model.jsValueArray) {
-            if (jsValueStr && jsValueStr.length > 0) {
-                context[jsValueStr] = ^{
                     NSArray *result = [JSContext currentArguments];
-                    [weakSelf showJsResultWithArray:result];
+                    [weakSelf showJsResponseActionWithName:jsResponseStr result:result];
                 };
             }
         }
     }
-    if (self.model.jsActionArray && self.model.jsActionArray.count > 0) {
-        for (NSString *jsActionStr in self.model.jsActionArray) {
+
+    if (self.model.callJsActionArray && self.model.callJsActionArray.count > 0) {
+        for (NSString *jsActionStr in self.model.callJsActionArray) {
             if (jsActionStr && jsActionStr.length > 0) {
-                [context evaluateScript:jsActionStr];
+                id object = [[context evaluateScript:jsActionStr] toObject];
+                if (object) {
+                    NSLog(@"object---%@",object);
+                }
+                [self showCallJsWithName:jsActionStr result:object];
             }
         }
     }
@@ -75,17 +84,35 @@
 
 
 
-- (void)showJsResponseActionWithName:(NSString *)actionName{
-    [self showAlertWithMessage:[NSString stringWithFormat:@"JsResponseAction-%@",actionName]];
+- (void)showJsResponseActionWithName:(NSString *)actionName result:(NSArray *)result{
+    if (actionName && actionName.length > 0) {
+        SEL action = NSSelectorFromString(actionName);
+        if ([self canPerformAction:action withSender:nil]) {
+            [self performSelector:action withObject:nil];
+            return;
+        }
+    }
+    NSMutableString *mutableStr = [NSMutableString string];
+    for (JSValue *value in result) {
+        NSString *string = [NSString stringWithFormat:@"%@\n",value];
+        [mutableStr appendString:string];
+    }
+    [self showAlertWithTitle:@"responseJsAction" Message:[NSString stringWithFormat:@"actionName-%@\nresult:%@",actionName,mutableStr]];
 }
 
-- (void)showJsResultWithArray:(NSArray *)array{
-    [self showAlertWithMessage:[NSString stringWithFormat:@"JsResult-%@",array]];
+- (void)showCallJsWithName:(NSString *)actionName result:(id)result{
+    [self showAlertWithTitle:@"CallJsAction" Message:[NSString stringWithFormat:@"actionName:%@\nresult:%@",actionName,result]];
+}
+
+- (void)closePage{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 
-- (void)showAlertWithMessage:(NSString *)message{
-    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"提醒" message:message preferredStyle:UIAlertControllerStyleAlert];
+- (void)showAlertWithTitle:(NSString *)title Message:(NSString *)message{
+    UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     }];
     [alertVc addAction:action];

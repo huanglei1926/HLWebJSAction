@@ -9,6 +9,7 @@
 #import "HLHomeController.h"
 #import "JSWebModel.h"
 #import "HLWebController.h"
+#import "HLAddDataController.h"
 
 @interface HLHomeController ()
 
@@ -21,21 +22,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNav];
     [self initDatas];
     [self.tableView reloadData];
 }
 
+- (void)setNav{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addCustomAction)];
+}
+
 - (void)initDatas{
-    JSWebModel *defaultModel = [[JSWebModel alloc] init];
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
-    NSString *bundel=[[NSBundle mainBundle] resourcePath];
-    NSString *path=[[bundel substringToIndex:[bundel rangeOfString:@"Library"].location] stringByAppendingFormat:@"Desktop/Web/index.html"];
-    NSURL* url = [NSURL fileURLWithPath:path];//创建URL
-    defaultModel.jsURl = url;
-    defaultModel.jsResponseActionArray = @[@"ButtonTestAction1",@"ButtonTestAction2"];
-    defaultModel.jsActionArray = @[@"webJsAction1('APP调用方法一')",@"webJsAction2('APP调用方法二')"];
-    defaultModel.jsValueArray = @[@"sendInfoToApp1"];
+    JSWebModel *defaultModel = [self getDefaultModel];
     _datas = @[defaultModel];
+}
+
+- (JSWebModel *)getDefaultModel{
+    JSWebModel *defaultModel = [[JSWebModel alloc] init];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"HLWebJsAction" ofType:@"html"];
+    NSURL* url = [NSURL fileURLWithPath:path];//创建URL
+    defaultModel.urlName = @"默认测试页面";
+    defaultModel.jsURl = url;
+    [defaultModel.responseJsActionArray addObjectsFromArray:@[@"closePage",@"payResult"]];
+    [defaultModel.callJsActionArray addObjectsFromArray:@[@"queryOrder()"]];
+    return defaultModel;
+}
+
+- (void)addCustomAction{
+    HLAddDataController *addDataVc = [[HLAddDataController alloc] init];
+    [self.navigationController pushViewController:addDataVc animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -48,7 +62,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"jsCell"];
     }
-    cell.textLabel.text = model.jsURl.absoluteString;
+    cell.textLabel.text = model.urlName ? model.urlName : model.jsURl.absoluteString;
     return cell;
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF71168020F4CC4100B0466C /* HLAddDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF71167E20F4CC4100B0466C /* HLAddDataCell.m */; };
+		BF71168120F4CC4100B0466C /* HLAddDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF71167F20F4CC4100B0466C /* HLAddDataCell.xib */; };
 		BFE8999120ECF763002C6C80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE8999020ECF763002C6C80 /* AppDelegate.m */; };
 		BFE8999420ECF763002C6C80 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE8999320ECF763002C6C80 /* ViewController.m */; };
 		BFE8999720ECF763002C6C80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE8999520ECF763002C6C80 /* Main.storyboard */; };
@@ -18,6 +20,9 @@
 		BFE899C720ECF80F002C6C80 /* HLWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE899C520ECF80F002C6C80 /* HLWebController.m */; };
 		BFE899CA20ECF84B002C6C80 /* JSWebModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE899C920ECF84B002C6C80 /* JSWebModel.m */; };
 		BFE899CD20ECFFB0002C6C80 /* HLHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE899CC20ECFFB0002C6C80 /* HLHomeController.m */; };
+		BFE89A0A20EE7097002C6C80 /* HLWebJsAction.html in Resources */ = {isa = PBXBuildFile; fileRef = BFE89A0920EE7097002C6C80 /* HLWebJsAction.html */; };
+		BFE89A0D20EE7319002C6C80 /* HLAddDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE89A0C20EE7319002C6C80 /* HLAddDataController.m */; };
+		BFE89A1020EE737B002C6C80 /* HLDataDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE89A0F20EE737B002C6C80 /* HLDataDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF71167D20F4CC4100B0466C /* HLAddDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLAddDataCell.h; sourceTree = "<group>"; };
+		BF71167E20F4CC4100B0466C /* HLAddDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLAddDataCell.m; sourceTree = "<group>"; };
+		BF71167F20F4CC4100B0466C /* HLAddDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HLAddDataCell.xib; sourceTree = "<group>"; };
 		BFE8998C20ECF763002C6C80 /* HLWebJSAction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLWebJSAction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE8998F20ECF763002C6C80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BFE8999020ECF763002C6C80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,6 +68,11 @@
 		BFE899C920ECF84B002C6C80 /* JSWebModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSWebModel.m; sourceTree = "<group>"; };
 		BFE899CB20ECFFB0002C6C80 /* HLHomeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLHomeController.h; sourceTree = "<group>"; };
 		BFE899CC20ECFFB0002C6C80 /* HLHomeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLHomeController.m; sourceTree = "<group>"; };
+		BFE89A0920EE7097002C6C80 /* HLWebJsAction.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HLWebJsAction.html; sourceTree = "<group>"; };
+		BFE89A0B20EE7319002C6C80 /* HLAddDataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLAddDataController.h; sourceTree = "<group>"; };
+		BFE89A0C20EE7319002C6C80 /* HLAddDataController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLAddDataController.m; sourceTree = "<group>"; };
+		BFE89A0E20EE737B002C6C80 /* HLDataDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLDataDetailController.h; sourceTree = "<group>"; };
+		BFE89A0F20EE737B002C6C80 /* HLDataDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLDataDetailController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +128,7 @@
 				BFE8999020ECF763002C6C80 /* AppDelegate.m */,
 				BFE8999220ECF763002C6C80 /* ViewController.h */,
 				BFE8999320ECF763002C6C80 /* ViewController.m */,
+				BFE89A0920EE7097002C6C80 /* HLWebJsAction.html */,
 				BFE8999520ECF763002C6C80 /* Main.storyboard */,
 				BFE8999820ECF764002C6C80 /* Assets.xcassets */,
 				BFE8999A20ECF764002C6C80 /* LaunchScreen.storyboard */,
@@ -151,6 +165,13 @@
 				BFE899C920ECF84B002C6C80 /* JSWebModel.m */,
 				BFE899CB20ECFFB0002C6C80 /* HLHomeController.h */,
 				BFE899CC20ECFFB0002C6C80 /* HLHomeController.m */,
+				BFE89A0B20EE7319002C6C80 /* HLAddDataController.h */,
+				BFE89A0C20EE7319002C6C80 /* HLAddDataController.m */,
+				BFE89A0E20EE737B002C6C80 /* HLDataDetailController.h */,
+				BFE89A0F20EE737B002C6C80 /* HLDataDetailController.m */,
+				BF71167D20F4CC4100B0466C /* HLAddDataCell.h */,
+				BF71167E20F4CC4100B0466C /* HLAddDataCell.m */,
+				BF71167F20F4CC4100B0466C /* HLAddDataCell.xib */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -260,7 +281,9 @@
 			files = (
 				BFE8999C20ECF764002C6C80 /* LaunchScreen.storyboard in Resources */,
 				BFE8999920ECF764002C6C80 /* Assets.xcassets in Resources */,
+				BFE89A0A20EE7097002C6C80 /* HLWebJsAction.html in Resources */,
 				BFE8999720ECF763002C6C80 /* Main.storyboard in Resources */,
+				BF71168120F4CC4100B0466C /* HLAddDataCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,9 +308,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE89A1020EE737B002C6C80 /* HLDataDetailController.m in Sources */,
+				BFE89A0D20EE7319002C6C80 /* HLAddDataController.m in Sources */,
 				BFE8999420ECF763002C6C80 /* ViewController.m in Sources */,
 				BFE899C720ECF80F002C6C80 /* HLWebController.m in Sources */,
 				BFE899CA20ECF84B002C6C80 /* JSWebModel.m in Sources */,
+				BF71168020F4CC4100B0466C /* HLAddDataCell.m in Sources */,
 				BFE8999F20ECF764002C6C80 /* main.m in Sources */,
 				BFE899CD20ECFFB0002C6C80 /* HLHomeController.m in Sources */,
 				BFE8999120ECF763002C6C80 /* AppDelegate.m in Sources */,

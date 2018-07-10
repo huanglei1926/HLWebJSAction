@@ -10,4 +10,18 @@
 
 @implementation JSWebModel
 
+- (NSMutableArray *)responseJsActionArray{
+    if (!_responseJsActionArray) {
+        _responseJsActionArray = [NSMutableArray array];
+    }
+    return _responseJsActionArray;
+}
+
+- (NSMutableArray *)callJsActionArray{
+    if (!_callJsActionArray) {
+        _callJsActionArray = [NSMutableArray array];
+    }
+    return _callJsActionArray;
+}
+
 @end

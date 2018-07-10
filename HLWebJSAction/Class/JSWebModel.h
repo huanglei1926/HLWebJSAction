@@ -10,13 +10,25 @@
 
 @interface JSWebModel : NSObject
 
+/**
+ 地址名称
+ */
+@property (nonatomic, copy) NSString *urlName;
+
+/**
+ 访问地址
+ */
 @property (nonatomic, copy) NSURL *jsURl;
 
-@property (nonatomic, copy) NSArray *jsResponseActionArray;
+/**
+ 响应JS方法
+ */
+@property (nonatomic, strong) NSMutableArray *responseJsActionArray;
 
-@property (nonatomic, copy) NSArray *jsActionArray;
-
-@property (nonatomic, copy) NSArray *jsValueArray;
+/**
+ 调用JS方法
+ */
+@property (nonatomic, strong) NSMutableArray *callJsActionArray;
 
 
 @end
